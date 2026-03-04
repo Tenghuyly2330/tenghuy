@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap');
+
+.font-khmer {
+    font-family: 'Kantumruy Pro', sans-serif;
+}
+
+.font-en {
+    font-family: 'Baloo 2', sans-serif;
+}

@@ -1,0 +1,67 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "packages": "Packages",
+    "articles": "Articles",
+    "contact": "Contact"
+  },
+  "HomePage": {
+    "welcome": "Hello, I'm",
+    "name": "Tenghuy.",
+    "title": "I'm a full stack-developer and UI/UX designer from Phnom Penh, Cambodia.",
+    "content1": "I like to build",
+    "content2": "beautiful and unique things.",
+    "tech_title": "Tech Stack",
+    "tech_sub_title": "Technologies I Work With",
+    "about_title": "I care deeply about...",
+    "about_01": "Beautiful, functional user experiences",
+    "about_02": "Accessibility and inclusion",
+    "about_03": "Clear, efficient code",
+    "about_04": "Security and performance",
+    "about_05": "Teamwork and communication",
+    "about_06": "Lifelong learning",
+    "twitter": "Twitter",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "view_all_articles": "View All Articles",
+    "latest_articles": "Latest Articles"
+  },
+  "Package": {
+    "title": "Open Source Packages",
+    "sub_title1": "Almost every new package arises from client work. When I discover functionality in client projects that is useful for others, I extract it to an open-source package.",
+    "sub_title2": "Have a look around; we're pretty sure there's something here that will suit your project!"
+  },
+  "Mode" : {
+    "light" : "Light Mode",
+    "dark" : "Dark Mode"
+  },
+  "Article": {
+    "title": "Stay curious.",
+    "content": "Discover stories, thinking, and expertise from writers on any topic."
+  },
+  "ContactNav": {
+    "contact_title": "Let's Connect",
+    "contact_sub": "Hey there! Feel free to reach out. I do my best to respond in a timely manner, but non-urgent messages may take a few extra days. You'll find that I'm quite responsive on Twitter, so if you have a programming-related question, that's a great place to start.",
+    "message_title": "Send a Message",
+    "form": "Please fix the errors in the form.",
+    "message_sent": "Message sent successfully!",
+    "name": "Your Name",
+    "name_error": "Your Name is required",
+    "email": "Your Email",
+    "email_error": "Your Email is required",
+    "email_error_text": "Please input valid email",
+    "subject": "Subject",
+    "subject_error": "",
+    "message": "Message",
+    "twitter": "Twitter",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "mail": "Email",
+    "location": "Location",
+    "send_message": "Send Message"
+  },
+  "Footer": {
+    "copyright": "© 2026. All Rights Reserved.",
+    "made_with_love": "Made with ❤️, ☕, and Next in Phnom Penh, Cambodia."
+  }
+}

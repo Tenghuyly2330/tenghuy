@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+::selection {
+  background-color: #fe7b7a; /* pink highlight */
+  color: white;             /* text color */
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #fe7b7a, #fbbd7e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #e46c6c1f, #f4a4601f 50%, #e46c6c14);;
+}
+
+.bg-gradient-light {
+  background: linear-gradient(90deg, #902424, #fbbd7e);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
