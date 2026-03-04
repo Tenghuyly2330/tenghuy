@@ -13,6 +13,8 @@ const ContactForm = () => {
         message: "",
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [errors, setErrors] = useState<any>({});
 
@@ -38,7 +40,7 @@ const ContactForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!validate()) {
@@ -46,16 +48,53 @@ const ContactForm = () => {
             return;
         }
 
-        toast.success(t("ContactNav.success_message"));
-        console.log(form);
+        setIsSubmitting(true);
 
-        setForm({
-            name: "",
-            email: "",
-            subject: "",
-            message: "",
-        });
-        setErrors({});
+        try {
+            const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+            const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
+            if (!BOT_TOKEN || !CHAT_ID) {
+                console.error("Telegram bot token or chat ID is missing");
+                toast.error("Failed to send message: Server configuration error");
+                setIsSubmitting(false);
+                return;
+            }
+
+            const text = `📬 *New Contact Form Submission*\n\n👤 *Name:* ${form.name}\n📧 *Email:* ${form.email}\n🏷 *Subject:* ${form.subject}\n💬 *Message:*\n${form.message}`;
+
+            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: text,
+                    parse_mode: "Markdown",
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to send message to Telegram");
+            }
+
+            toast.success(t("ContactNav.success_message"));
+            console.log(form);
+
+            setForm({
+                name: "",
+                email: "",
+                subject: "",
+                message: "",
+            });
+            setErrors({});
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to send message. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
 
@@ -172,9 +211,10 @@ const ContactForm = () => {
                 {/* Button */}
                 <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-4 cursor-pointer bg-[#fe7b7a] transition-all text-white font-semibold py-3 rounded-xl"
+                    disabled={isSubmitting}
+                    className={`w-full flex items-center justify-center gap-4 transition-all text-white font-semibold py-3 rounded-xl ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "cursor-pointer bg-[#fe7b7a]"}`}
                 >
-                    <img src="/images/icons/send.svg" alt="star" width={20} height={20} /> <span> {t("ContactNav.send_message")}</span>
+                    <img src="/images/icons/send.svg" alt="star" width={20} height={20} /> <span> {isSubmitting ? t("ContactNav.sending", "Sending...") : t("ContactNav.send_message")}</span>
                 </button>
             </form>
         </div>
